@@ -1,7 +1,7 @@
 # Vue Cli 3 & Asp.Net Core 2.1.3
 This project is a basic template using Asp.Net Core to serve a VUE SPA. It is designed for simplicity and for rapid development, leveraging the benefits of Vue Cli 3.
 
-## A tutorial is included in this repository: [tutorial.md](https://github.com/kevdever/VueCli3andAspNetCore/blob/master/Tutorial.md)
+## A [tutorial](https://github.com/kevdever/VueCli3andAspNetCore/blob/master/Tutorial.md) is included in this repository. The file is named `tutorial.md`.
 
 In the interest of keeping this simple and robust to future changes, considering that Vue Cli 3 is still in alpha, the workflows for development and production differ.
 
