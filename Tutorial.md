@@ -1,5 +1,5 @@
 # Instructions to Recreate this Template (Tutorial)
-Note: I have tried to make this tutorial in such a way that it can be followed in Windows, macOS, or Linux, using nothing but a terminal and a text editor (and a web browser to see the result, of course). While I've written and run these commands from Windows Powershell, I used bash &mdash; not Powershell &mdash; commands as much as possible, so the differences when using macOS or Linux should be minimal. and I've shown every co everything here can be done via the console only, if desired, though I did use VS Code as a text editor only. 
+Note: I have tried to make this tutorial in such a way that it can be followed in Windows, macOS, or Linux, using nothing but a terminal and a text editor (and a web browser to see the result, of course). While I've written and run these commands from Windows Powershell, I used bash &mdash; not Powershell &mdash; commands as much as possible, so the differences when using macOS or Linux should be minimal.
 
 All that said, the .gitignore I've provided should cover use in Visual Studio and Visual Studio Code. For the purposes of this tutorial, I suggest launching/running the servers from the cli, not directly from VS or VS Code.
 
