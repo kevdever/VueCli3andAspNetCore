@@ -1,5 +1,7 @@
 # Instructions to Recreate this Template (Tutorial)
-Note: The commands below were run in Powershell, but they're identical (or almost so) in macOS/Linux. The tools used were Powershell and VS Code with Vetur.
+Note: I have tried to make this tutorial in such a way that it can be followed in Windows, macOS, or Linux, using nothing but a terminal and a text editor (and a web browser to see the result, of course). While I've written and run these commands from Windows Powershell, I used bash &mdash; not Powershell &mdash; commands as much as possible, so the differences when using macOS or Linux should be minimal. and I've shown every co everything here can be done via the console only, if desired, though I did use VS Code as a text editor only. 
+
+All that said, the .gitignore I've provided should cover use in Visual Studio and Visual Studio Code. For the purposes of this tutorial, I suggest launching/running the servers from the cli, not directly from VS or VS Code.
 
 ## Scaffold the Asp.Net Core project and set it up to bootstrap the SPA
 1. Create a project folder: `> mkdir VueAspNetCoreTemplate`
@@ -16,10 +18,11 @@ public IActionResult Index([FromServices] IHostingEnvironment hostingEnvironment
 ```
 This method uses the injected IHostingEnvironment to get the base path (set in program.cs), then fetches the auto-generated index.html and returns that to the client.
 
-7.  Asp.Net Core's MVC project creates a `wwwroot` folder and assumes static files will be served from there.  Vue CLI, however, assumes static files will be in `/dist`.  In order for (1) the HomeController to access the the auto-generated `index.html` file as simply as possible, the `ContentRoot` folder needs to be changed from the default to `\ClientApp\dist` in `program.cs`; (2) and for the SPA to have access to the js, css, and other resources, they need to have access to the same `\ClientApp\dist` folder, which requires updating the `UseStaticFiles` middleware in `startup.cs`.
+7.  Asp.Net Core's MVC project creates a `wwwroot` folder and assumes static files will be served from there.  Vue CLI, however, assumes static files will be in `/dist`.  In order for (1) the HomeController to access the auto-generated `index.html` file as simply as possible, the `ContentRoot` folder needs to be changed from the default to `\ClientApp\dist` in `program.cs`; (2) and for the SPA to have access to the js, css, and other resources, they need to have access to the same `\ClientApp\dist` folder, which requires updating the `UseStaticFiles` middleware in `startup.cs`.
 
     a. Delete wwwroot: `> rm .\wwwroot\ -R`
-    b. In `program.cs`, update the CreateHostBuilder as follows to set the custom ContentRoot that Vue expects:
+
+    b. In `program.cs`, update the `CreateHostBuilder` as follows to set the custom `ContentRoot` that Vue expects:
     ```c#
     public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         WebHost.CreateDefaultBuilder(args)
