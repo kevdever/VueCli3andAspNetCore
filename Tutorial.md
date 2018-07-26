@@ -121,7 +121,7 @@ Vue CLI 3 created a `.gitignore` for us in the `ClientApp` folder, but we want o
 
 1. I started with the [boilerplate .gitignore for Visual Studio](https://github.com/github/gitignore/blob/master/VisualStudio.gitignore)
 
-2. Then I added the items that Vue add in its version (with a slight path tweak to include ClientApp):
+2. Then I added the items that Vue add in its version (with a slight path tweak to include ClientApp, and another one to ignore .cache files):
     
 ```
 
@@ -146,6 +146,9 @@ Vue CLI 3 created a `.gitignore` for us in the `ClientApp` folder, but we want o
     *.njsproj
     *.sln
     *.sw*
+
+    #ignore cache
+    *.cache
 
 ```
 3. Delete the .gitignore in the ClientApp folder: `> rm .\ClientApp\.gitignore`
