@@ -156,7 +156,8 @@ Vue CLI 3 created a `.gitignore` for us in the `ClientApp` folder, but we want o
 <hr/>
 
 ## Let's get back to Vue. We've already scaffolded a basic Vue app, so let's run it.
-0. As of this writing, there's a syntax issue in the files scaffolded by Vue CLI 3. In Home.Vue, there's a path prepended with "@" rather than "./", which is an alias that results in an error when you try to run. We can avoid the error with a different syntax. Let's fix that:
+0. As of this writing, there's a syntax issue in the files scaffolded by Vue CLI 3. In Home.Vue, there's a path prepended with "@" rather than "../", which is an alias that results in an error when you try to run. We can avoid the error with a different syntax. Let's fix that:
+
 from
 ```
 import HelloWorld from '@/components/HelloWorld.vue'
