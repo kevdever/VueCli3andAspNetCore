@@ -66,10 +66,18 @@ namespace VueAspNetCoreTemplate
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
 
+                //let the SPA handle 404s
                 routes.MapSpaFallbackRoute(
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index"}
                 );
+            });
+            
+            //serve up the bootstrapper index.html to the client
+            app.Run(async (context) =>
+            {
+                context.Response.ContentType = "text/html";
+                await context.Response.SendFileAsync(Path.Combine(env.ContentRootPath, "index.html"));
             });
         }
     }

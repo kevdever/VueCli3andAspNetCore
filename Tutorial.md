@@ -8,15 +8,16 @@ All that said, the .gitignore I've provided should cover use in Visual Studio an
 2. Go to that folder: `> cd .\VueAspnetCoreTemplate`
 3. Scaffold an ASP.Net Core MVC project: `dotnet new mvc` (using a controller to serve the index.html bootstrapper keeps this simple, thus the choice of using the MVC template)
 4. Delete all of the Views in home, as well as the directory: `> rm .\Views\Home\ -R`
-5. In `Controllers\HomeController`, delete all of the handlers _EXCEPT_ for the error handler. We'll be rewriting the Index getter to serve up the SPA static html file.
-6. Replace the old `Index()` method with the following: 
+5. In `Controllers\HomeController`, delete all of the handlers _EXCEPT_ for the error handler. We'll be injecting the SPA's static `index.html` directly from startup.cs.
+6. At the bottom of startup.configure, add the following: 
 ```c# 
-public IActionResult Index([FromServices] IHostingEnvironment hostingEnvironment)
+app.Run(async (context) =>
 {
-    return PhysicalFile(Path.Combine(hostingEnvironment.ContentRootPath, "index.html"), "text/html");
-}
+    context.Response.ContentType = "text/html";
+    await context.Response.SendFileAsync(Path.Combine(env.ContentRootPath, "index.html"));
+});
 ```
-This method uses the injected IHostingEnvironment to get the base path (set in program.cs), then fetches the auto-generated index.html and returns that to the client.
+This method uses the IHostingEnvironment to get the base path (set in program.cs), then fetches the auto-generated index.html and returns that to the client.  It's important that app.Run() be the last call in Configure.
 
 7.  Asp.Net Core's MVC project creates a `wwwroot` folder and assumes static files will be served from there.  Vue CLI, however, assumes static files will be in `/dist`.  In order for (1) the HomeController to access the auto-generated `index.html` file as simply as possible, the `ContentRoot` folder needs to be changed from the default to `\ClientApp\dist` in `program.cs`; (2) and for the SPA to have access to the js, css, and other resources, they need to have access to the same `\ClientApp\dist` folder, which requires updating the `UseStaticFiles` middleware in `startup.cs`.
 

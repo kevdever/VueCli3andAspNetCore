@@ -12,11 +12,6 @@ namespace VueAspNetCoreTemplate.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index([FromServices] IHostingEnvironment hostingEnvironment)
-        {
-            return PhysicalFile(Path.Combine(hostingEnvironment.ContentRootPath, "index.html"), "text/html");
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
